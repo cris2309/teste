@@ -1,0 +1,87 @@
+ // criando tabelas
+
+CREATE TABLE public.animal
+(
+    codanimal integer NOT NULL,
+    nome text NOT NULL,
+    especie text NOT NULL,
+    sexo text NOT NULL,
+    cor text,
+    coddono integer,
+    PRIMARY KEY (codanimal)
+);
+
+
+CREATE TABLE public.dono
+(
+    coddono integer NOT NULL,
+    dono text NOT NULL,
+    bairro text,
+    PRIMARY KEY (coddono)
+);
+
+
+// inserir registros
+
+INSERT INTO public.animal(
+	codanimal, nome, especie, sexo, cor, coddono)
+	VALUES (1, 'Luna', 'cachorro', 'femea', 'preta', 1);
+
+INSERT INTO public.animal(
+	codanimal, nome, especie, sexo, cor, coddono)
+	VALUES (2, 'Jully', 'cachorro', 'femea', 'caramelo', 2);
+
+INSERT INTO public.animal(
+	codanimal, nome, especie, sexo, cor, coddono)
+	VALUES (3, 'Peter', 'cachorro', 'macho', 'preto', 3);
+
+INSERT INTO public.animal(
+	codanimal, nome, especie, sexo, cor, coddono)
+	VALUES (4, 'Lana', 'cachorro', 'femea', 'preta', 2);
+	
+
+INSERT INTO public.dono
+(coddono, dono, bairro)
+VALUES (1,'Paula','vila nova');
+
+INSERT INTO public.dono
+(coddono, dono, bairro)
+VALUES (2,'Cris','Portão');
+
+INSERT INTO public.dono
+(coddono, dono, bairro)
+VALUES (3,'Renato','fazendinha');
+
+INSERT INTO public.dono
+(coddono, dono, bairro)
+VALUES (4,'Lidia','fazendinha');
+
+
+-- mostrar dono do bairro vila nova
+
+select *
+from "dono"
+left join "animal"
+on dono.coddono = animal.coddono
+where bairro = 'vila nova'
+
+--mostrar dono,bairro e animal de uma condição especifica
+
+select dono.dono,
+       dono.bairro,
+	   animal.nome
+	   from "dono"
+	   left join "animal" 
+	   on dono.coddono = animal.coddono
+	   where bairro ='portao'
+	   
+	   
+	   select dono.dono,
+       dono.bairro,
+	   animal.sexo,
+	   animal.nome
+	   from "dono"
+	   inner join "animal" 
+	   on dono.coddono = animal.coddono
+	   where sexo = 'macho'
+	   
